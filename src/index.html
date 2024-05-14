@@ -8,15 +8,26 @@
 	</head>
 
 	<body>
-		<h1>Odin To-Do</h1>
+		<header>
+			<h1>Odin To-Do</h1>
+		</header>
 
-		<!-- to-do input + button -->
-		<input type="text" name="title" id="todo-title" placeholder="Enter to-do title..." />
-		<button class="add-todo">Add</button>
+		<section class="content">
+			<aside>
+				<h2>Projects</h2>
+				<ul>
+					<li>Default</li>
+				</ul>
+				<button>add a new project</button>
+			</aside>
+			<section id="project">
+				<input type="text" name="title" id="todo-title" placeholder="Enter to-do title..." />
+				<button class="add-todo">Add</button>
 
-		<!-- temp list of to-do's -->
-		<h2>To-Dos</h2>
-		<ul class="todos"></ul>
+				<h2 id="project-title"></h2>
+				<ul class="todos"></ul>
+			</section>
+		</section>
 	</body>
 	<script src="main.js"></script>
 </html>

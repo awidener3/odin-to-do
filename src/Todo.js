@@ -15,10 +15,23 @@ export default class Todo extends Project {
 
 	add() {
 		const element = document.createElement('li');
+		element.classList.add('todo');
 		element.innerHTML = `
-      <h3>${this.project} / ${this.title}</h3>
-      <p>Here is a description</p>
-      <button class="delete">delete</button>
+      <span class='todo-header'>
+        <h3>${this.title}</h3>
+
+        <menu>
+          <li>
+            <button class="edit">edit</button>
+          </li>
+          <li>
+            <button class="delete">delete</button>
+          </li>
+        </menu>
+      </span>
+      <span>
+        <p>Here is a description</p>
+      </span>
     `;
 		this.element = element;
 		this.parent.append(element);

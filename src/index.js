@@ -1,3 +1,4 @@
+import './styles.css';
 import Todo from './Todo';
 import Project from './Project';
 
@@ -8,6 +9,11 @@ const projects = [];
 const defaultProject = new Project({ name: 'default' });
 projects.push(defaultProject);
 
+// set project title
+const projectHeader = document.querySelector('#project-title');
+projectHeader.textContent = 'default';
+
+// add listener
 const addTodoBtn = document.querySelector('.add-todo');
 addTodoBtn.addEventListener('click', () => {
 	let project;
