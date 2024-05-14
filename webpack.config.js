@@ -10,7 +10,8 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: 'Odin To-Do',
+			template: path.join(__dirname, 'src/index.html'),
+			inject: false,
 		}),
 	],
 	output: {
@@ -24,14 +25,6 @@ module.exports = {
 				test: /\.css$/i,
 				use: ['style-loader', 'css-loader'],
 			},
-			{
-				test: /\.(woff|woff2|eot|ttf|otf)$/i,
-				type: 'asset/resource',
-			},
 		],
 	},
-	/* uncomment if using more than one entry */
-	// optimization: {
-	// 	runtimeChunk: 'single',
-	// },
 };
