@@ -1,0 +1,158 @@
+/* Fonts 
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Quattrocento', serif;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Quattrocento&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	/* Colors */
+	--dark-blue: #2f3e46;
+	--light-blue: #354f52;
+	--dark-green: #52796f;
+	--light-green: #84a98c;
+	--tan: #cad2c5;
+
+	/* Layout */
+	--pad-sm: 6px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-weight: 400;
+}
+
+p,
+li,
+button,
+input {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-weight: 400;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* HEADER */
+header {
+	background-color: var(--light-blue);
+	color: var(--tan);
+	text-align: center;
+	padding: 10px 0;
+	font-size: 1.8rem;
+}
+
+#content {
+	display: flex;
+	height: 100%;
+}
+
+#sidenav {
+	width: 250px;
+	border-right: 1px solid var(--light-green);
+	padding: var(--pad-sm);
+}
+
+/* SIDENAV */
+#sidenav > h2 {
+	color: var(--dark-green);
+	font-size: 2rem;
+}
+
+.nav-menu > li {
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+}
+
+.nav-menu > li > button {
+	cursor: pointer;
+	text-align: start;
+	font-size: 1rem;
+
+	padding: var(--pad-sm);
+	background: none;
+	border: none;
+}
+
+.nav-menu > li > button:hover {
+	background-color: #cad2c5;
+	border-radius: 0.3rem;
+}
+
+/* SCREEN */
+#screen {
+	flex: 1;
+	height: 100%;
+}
+
+#todos {
+	list-style-type: none;
+	overflow-y: auto;
+}
+
+#todos > li {
+	padding: 20px;
+}
+
+#todos > li {
+	margin: 10px;
+	border-radius: 10px;
+	border: 1px solid var(--light-green);
+}
+
+#todos > .todo {
+	margin: 10px;
+	border-radius: 10px;
+	border: 1px solid var(--light-green);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#todos > .todo::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+  content: '\f111';
+  font-size: 1.5rem;
+  color: #f79256;
+}
+
+#todos > .todo.complete h3,
+#todos > .todo.complete p {
+	text-decoration: line-through;
+}
+
+#todos > .todo.complete::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+  content: '\f058';
+}
+
+#todos > .todo.complete::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+  content: '\f058';
+}
+
+#todos > .todo > div > .todo-title {
+	font-weight: bold;
+	color: var(--dark-green);
+}
+
+#todos > .todo > div > .todo-description {
+	font-style: italic;
+}
