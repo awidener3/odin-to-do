@@ -1,13 +1,33 @@
 export default class Project {
-	constructor(name = 'New Project') {
-		this.name = name;
+	constructor(params) {
+		this.id = params?.id || crypto.randomUUID()
+		this.name = params?.name || 'Default'
+		this.todos = params?.todos || []
+
+		this.save()
 	}
 
-	get name() {
-		return this._name;
+	save() {
+		const existingProjects = JSON.parse(window.localStorage.getItem('projects'))
+		if (existingProjects.length) {
+			const updated = existingProjects.map((project) => {
+				if (project.id === this.id) {
+					project = this.toJson()
+				}
+				return project
+			})
+
+			window.localStorage.setItem('projects', JSON.stringify(updated))
+		} else {
+			window.localStorage.setItem('projects', JSON.stringify([this.toJson()]))
+		}
 	}
 
-	set name(value) {
-		this._name = value;
+	toJson() {
+		return {
+			id: this.id,
+			name: this.name,
+			todos: this.todos
+		}
 	}
 }
