@@ -15,7 +15,7 @@ body {
 	background: rgb(56, 128, 150);
 	height: 100vh;
 	display: grid;
-	grid-template-columns: max-content 1fr;
+	grid-template-columns: 200px 1fr;
 	grid-template-rows: max-content 1fr max-content;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -40,7 +40,6 @@ select {
 body > header {
 	position: relative;
 	top: 0;
-	grid-column: 1 / -1;
 	text-align: center;
 	padding: 15px;
 	color: white;
@@ -58,9 +57,31 @@ body > header > button {
 }
 
 aside {
-	margin-left: 15px;
+	grid-column: 1 / 2;
+	grid-row: 1 / -1;
 	background: white;
-	border-radius: 15px;
+}
+
+aside > #projectForm > #projectList {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+aside > #projectForm > #projectList > li > input[type='radio'] {
+	display: none;
+}
+
+aside > #projectForm > #projectList > li > label {
+	width: 100%;
+	display: inline-block;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+aside > #projectForm > #projectList > li > input[type='radio']:checked + label {
+	background: var(--darkgray);
 }
 
 main {
@@ -68,6 +89,10 @@ main {
 	flex-direction: column;
 	gap: 10px;
 	padding: 0 15px;
+}
+
+main > h2 {
+	color: white;
 }
 
 main > #addTodo {
@@ -138,7 +163,7 @@ main > #addTodo {
 footer {
 	display: flex;
 	justify-content: center;
-	grid-column: 1 / -1;
+	/* grid-column: 1 / -1; */
 	gap: 10px;
 	font-size: 0.8rem;
 }

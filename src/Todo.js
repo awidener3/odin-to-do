@@ -1,9 +1,10 @@
 export default class Todo {
-	constructor({ id, title, desc, status }) {
+	constructor({ id, title, desc, status, projectId }) {
 		this.id = id;
 		this.title = title;
 		this.desc = desc;
 		this.status = status;
+		this.projectId = projectId || null;
 		this.container = null;
 	}
 
@@ -35,7 +36,6 @@ export default class Todo {
 
 		titleEl.addEventListener('focusout', (e) => this.update('title', e.target.textContent));
 		descriptionEl.addEventListener('focusout', (e) => this.update('desc', e.target.textContent));
-		console.log(statusEl);
 		statusEl.addEventListener('input', (e) => {
 			const article = container.querySelector('article');
 			article.classList.remove(this.status);
