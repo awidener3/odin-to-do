@@ -1,9 +1,3 @@
-/* Fonts 
-  font-family: 'Oswald', sans-serif;
-  font-family: 'Quattrocento', serif;
-*/
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Quattrocento&display=swap');
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -11,148 +5,115 @@
 }
 
 :root {
-	/* Colors */
-	--dark-blue: #2f3e46;
-	--light-blue: #354f52;
-	--dark-green: #52796f;
-	--light-green: #84a98c;
-	--tan: #cad2c5;
-
-	/* Layout */
-	--pad-sm: 6px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	font-weight: 400;
-}
-
-p,
-li,
-button,
-input {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	font-weight: 400;
+	--not-started: rgb(189, 189, 189);
+	--in-progress: rgb(240, 228, 147);
+	--done: rgb(162, 241, 152);
 }
 
 body {
+	background: rgb(56, 128, 150);
 	height: 100vh;
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	grid-template-rows: max-content 1fr max-content;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* HEADER */
-header {
-	background-color: var(--light-blue);
-	color: var(--tan);
+body > header {
+	position: relative;
+	top: 0;
+	grid-column: 1 / -1;
 	text-align: center;
-	padding: 10px 0;
-	font-size: 1.8rem;
+	padding: 15px;
+	color: white;
 }
 
-#content {
-	display: flex;
-	height: 100%;
+body > header > button {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	right: 25px;
+	height: max-content;
+	padding: 6px 10px;
 }
 
-#sidenav {
-	width: 250px;
-	border-right: 1px solid var(--light-green);
-	padding: var(--pad-sm);
+aside {
+	background: white;
 }
 
-/* SIDENAV */
-#sidenav > h2 {
-	color: var(--dark-green);
-	font-size: 2rem;
+main {
+	padding: 0 15px;
 }
 
-.nav-menu > li {
+/* #region todos */
+#todoList {
+	list-style-type: none;
 	display: flex;
 	flex-direction: column;
-	font-size: 1rem;
+	gap: 10px;
 }
 
-.nav-menu > li > button {
-	cursor: pointer;
-	text-align: start;
-	font-size: 1rem;
-
-	padding: var(--pad-sm);
-	background: none;
-	border: none;
+.todo {
+	display: grid;
+	grid-template-columns: 15px 1fr;
+	grid-template-rows: max-content 1fr;
+	background: white;
+	color: black;
+	border-radius: 15px;
 }
 
-.nav-menu > li > button:hover {
-	background-color: #cad2c5;
-	border-radius: 0.3rem;
-}
-
-/* SCREEN */
-#screen {
-	flex: 1;
+.todo > .status {
+	display: block;
+	content: '';
+	background: var(--not-started);
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	grid-row: 1 / -1;
+	width: 100%;
 	height: 100%;
 }
 
-#todos {
-	list-style-type: none;
-	overflow-y: auto;
+.todo > header {
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-#todos > li {
-	padding: 20px;
+.todo > header > h3 {
+	font-size: 1rem;
 }
 
-#todos > li {
-	margin: 10px;
+.todo > header > p {
+	background: var(--not-started);
+	font-size: 0.8rem;
+	padding: 2px 5px;
 	border-radius: 10px;
-	border: 1px solid var(--light-green);
 }
 
-#todos > .todo {
-	margin: 10px;
-	border-radius: 10px;
-	border: 1px solid var(--light-green);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.todo > p {
+	font-size: 0.9rem;
+	padding: 5px;
 }
 
-#todos > .todo::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
-  content: '\f111';
-  font-size: 1.5rem;
-  color: #f79256;
+.todo.in-progress > .status,
+.todo.in-progress > header > p {
+	background: var(--in-progress);
 }
 
-#todos > .todo.complete h3,
-#todos > .todo.complete p {
+.todo.done > header > h3,
+.todo.done > p {
 	text-decoration: line-through;
 }
 
-#todos > .todo.complete::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
-  content: '\f058';
+.todo.done > .status,
+.todo.done > header > p {
+	background: var(--done);
 }
 
-#todos > .todo.complete::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
-  content: '\f058';
-}
+/* #endregion */
 
-#todos > .todo > div > .todo-title {
-	font-weight: bold;
-	color: var(--dark-green);
-}
-
-#todos > .todo > div > .todo-description {
-	font-style: italic;
+footer {
 }
