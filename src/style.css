@@ -64,7 +64,7 @@ main {
 	border-radius: 15px;
 }
 
-.todo > .status {
+.todo > .status-span {
 	display: block;
 	content: '';
 	background: var(--not-started);
@@ -80,26 +80,26 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	font-size: 0.9rem;
+	margin: 2px 5px;
 }
 
-.todo > header > h3 {
-	font-size: 1rem;
-}
-
-.todo > header > p {
+.todo > header > select {
 	background: var(--not-started);
 	font-size: 0.8rem;
 	padding: 2px 5px;
 	border-radius: 10px;
+	border: none;
 }
 
 .todo > p {
+	margin: 5px;
 	font-size: 0.9rem;
-	padding: 5px;
+	padding: 3px;
 }
 
-.todo.in-progress > .status,
-.todo.in-progress > header > p {
+.todo.in-progress > .status-span,
+.todo.in-progress > header > select {
 	background: var(--in-progress);
 }
 
@@ -108,8 +108,8 @@ main {
 	text-decoration: line-through;
 }
 
-.todo.done > .status,
-.todo.done > header > p {
+.todo.done > .status-span,
+.todo.done > header > select {
 	background: var(--done);
 }
 

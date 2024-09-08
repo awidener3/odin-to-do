@@ -6,13 +6,13 @@ const sampleData = [
 		id: 0,
 		title: 'Todo #1',
 		desc: "A todo that I haven't started",
-		status: 'not started',
+		status: 'not-started',
 	},
 	{
 		id: 1,
 		title: 'Todo #2',
 		desc: "A todo that I'm doing.",
-		status: 'in progress',
+		status: 'in-progress',
 	},
 	{
 		id: 2,
