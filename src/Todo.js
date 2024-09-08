@@ -1,11 +1,12 @@
 export default class Todo {
-	constructor({ id, title, desc, priority, projectId, completed }) {
+	constructor({ id, title, desc, priority, projectId, completed, dueDate }) {
 		this.id = id;
 		this.title = title;
 		this.desc = desc;
 		this.priority = priority;
 		this.projectId = projectId || null;
 		this.completed = completed;
+		this.dueDate = dueDate || '';
 		this.container = null;
 	}
 
@@ -13,15 +14,18 @@ export default class Todo {
 		const container = document.createElement('li');
 		container.classList.add('todo');
 
-		console.log(this.completed);
-
 		container.innerHTML = `
 		<input type="checkbox" class="complete" ${this.completed ? 'checked' : ''}>
 		<article class="${this.priority} ${this.completed ? 'completed' : ''}">
 			<span class="priority-span"></span>
 			<header>
 				<h3 class="title" contenteditable>${this.title}</h3>
+				
 				<menu>
+					<li>
+						<label for="dueDate" hidden>Due date</label>
+						<input name="dueDate" class="dueDate" type="date" value="${this.dueDate}">
+					</li>
 					<li>
 						<label for="priority" hidden>Priority</label>
 						<select class="priority">
@@ -44,6 +48,7 @@ export default class Todo {
 
 		const article = container.querySelector('article');
 		const titleEl = article.querySelector('.title');
+		const dueDateEl = article.querySelector('.dueDate');
 		const descriptionEl = article.querySelector('.desc');
 		const priorityEl = article.querySelector('.priority');
 		const deleteBtn = article.querySelector('.delete');
@@ -57,6 +62,7 @@ export default class Todo {
 
 		// update names
 		titleEl.addEventListener('focusout', (e) => this.update('title', e.target.textContent));
+		dueDateEl.addEventListener('focusout', (e) => this.update('dueDate', e.target.value));
 		descriptionEl.addEventListener('focusout', (e) => this.update('desc', e.target.textContent));
 
 		// update priority

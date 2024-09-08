@@ -9,6 +9,7 @@ const sampleTodos = [
 		desc: "A todo that I haven't started",
 		priority: 'low',
 		completed: false,
+		dueDate: '2025-02-11',
 		projectId: 'default',
 	},
 	{
@@ -17,6 +18,7 @@ const sampleTodos = [
 		desc: "A todo that I'm doing.",
 		priority: 'medium',
 		completed: false,
+		dueDate: '',
 		projectId: '0',
 	},
 	{
@@ -25,6 +27,7 @@ const sampleTodos = [
 		desc: "A todo that I've done.",
 		priority: 'high',
 		completed: false,
+		dueDate: '',
 		projectId: '0',
 	},
 ];

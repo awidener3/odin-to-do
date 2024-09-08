@@ -51,6 +51,7 @@ aside {
 }
 
 aside > h1 {
+	margin-top: 10px;
 	text-align: center;
 }
 
@@ -63,7 +64,8 @@ aside > #projectForm > #projectList {
 }
 
 aside > #projectForm > #projectList > li > input[type='radio'] {
-	display: none;
+	opacity: 0;
+	position: absolute;
 }
 
 aside > #projectForm > #projectList > li > label {
@@ -72,6 +74,11 @@ aside > #projectForm > #projectList > li > label {
 	display: inline-block;
 	padding: 5px 10px;
 	border-radius: 10px;
+}
+
+aside > #projectForm > #projectList > li > input[type='radio']:focus + label {
+	outline: 1px dotted #212121;
+	outline: 5px auto -webkit-focus-ring-color;
 }
 
 aside > #projectForm > #projectList > li > label:hover {
