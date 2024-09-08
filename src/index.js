@@ -7,21 +7,24 @@ const sampleTodos = [
 		id: 0,
 		title: 'Todo #1',
 		desc: "A todo that I haven't started",
-		status: 'not-started',
+		priority: 'low',
+		completed: false,
 		projectId: 'default',
 	},
 	{
 		id: 1,
 		title: 'Todo #2',
 		desc: "A todo that I'm doing.",
-		status: 'in-progress',
+		priority: 'medium',
+		completed: false,
 		projectId: '0',
 	},
 	{
 		id: 2,
 		title: 'Todo #3',
 		desc: "A todo that I've done.",
-		status: 'done',
+		priority: 'high',
+		completed: false,
 		projectId: '0',
 	},
 ];
@@ -72,7 +75,7 @@ class UI {
 				id: crypto.randomUUID(),
 				title: 'New todo',
 				desc: 'Add a description...',
-				status: 'not-started',
+				priority: 'low',
 				projectId: this.currentProjectId,
 			};
 

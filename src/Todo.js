@@ -1,28 +1,33 @@
 export default class Todo {
-	constructor({ id, title, desc, status, projectId }) {
+	constructor({ id, title, desc, priority, projectId, completed }) {
 		this.id = id;
 		this.title = title;
 		this.desc = desc;
-		this.status = status;
+		this.priority = priority;
 		this.projectId = projectId || null;
+		this.completed = completed;
 		this.container = null;
 	}
 
 	build = (element) => {
 		const container = document.createElement('li');
+		container.classList.add('todo');
+
+		console.log(this.completed);
 
 		container.innerHTML = `
-		<article class="todo ${this.status}">
-			<span class="status-span"></span>
+		<input type="checkbox" class="complete" ${this.completed ? 'checked' : ''}>
+		<article class="${this.priority} ${this.completed ? 'completed' : ''}">
+			<span class="priority-span"></span>
 			<header>
 				<h3 class="title" contenteditable>${this.title}</h3>
 				<menu>
 					<li>
-						<label for="status" hidden>Status</label>
-						<select class="status">
-							<option value="not-started" ${this.status === 'not-started' ? 'selected' : ''}>Not started</option>
-							<option value="in-progress" ${this.status === 'in-progress' ? 'selected' : ''}>In progress</option>
-							<option value="done" ${this.status === 'done' ? 'selected' : ''}>Done</option>
+						<label for="priority" hidden>Priority</label>
+						<select class="priority">
+							<option value="low" ${this.priority === 'low' ? 'selected' : ''}>Low</option>
+							<option value="medium" ${this.priority === 'medium' ? 'selected' : ''}>Medium</option>
+							<option value="high" ${this.priority === 'high' ? 'selected' : ''}>High</option>
 						</select>
 					</li>
 					<li>
@@ -37,19 +42,28 @@ export default class Todo {
 		element.append(container);
 		this.container = container;
 
-		const titleEl = container.querySelector('.title');
-		const descriptionEl = container.querySelector('.desc');
-		const statusEl = container.querySelector('.status');
-		const deleteBtn = container.querySelector('.delete');
+		const article = container.querySelector('article');
+		const titleEl = article.querySelector('.title');
+		const descriptionEl = article.querySelector('.desc');
+		const priorityEl = article.querySelector('.priority');
+		const deleteBtn = article.querySelector('.delete');
+		const completeCheckbox = container.querySelector('.complete');
 
+		// update completion status
+		completeCheckbox.addEventListener('change', (e) => {
+			this.update('completed', e.target.checked);
+			article.classList.toggle('completed', e.target.checked);
+		});
+
+		// update names
 		titleEl.addEventListener('focusout', (e) => this.update('title', e.target.textContent));
 		descriptionEl.addEventListener('focusout', (e) => this.update('desc', e.target.textContent));
-		statusEl.addEventListener('input', (e) => {
-			const article = container.querySelector('article');
-			article.classList.remove(this.status);
-			article.classList.add(e.target.value);
 
-			this.update('status', e.target.value);
+		// update priority
+		priorityEl.addEventListener('input', (e) => {
+			article.classList.remove(this.priority);
+			article.classList.add(e.target.value);
+			this.update('priority', e.target.value);
 		});
 
 		deleteBtn.addEventListener('click', this.delete);
@@ -60,7 +74,7 @@ export default class Todo {
 		if (this[field] === data) return;
 
 		// format the data
-		data = data.trim();
+		if (typeof data === 'string') data = data.trim();
 
 		// update the instance
 		this[field] = data;
