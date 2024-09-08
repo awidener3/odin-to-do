@@ -19,6 +19,6 @@
 		"d": "npm run dev"
 	},
 	"dependencies": {
-		"date-fns": "^3.6.0"
+		"date-fns": "3.6.0"
 	}
 }

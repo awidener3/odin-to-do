@@ -12,7 +12,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'Todo',
 			template: 'src/index.html',
-			favicon: 'src/assets/img/favicon.ico',
+			favicon: 'src/favicon.ico',
 		}),
 	],
 	output: {

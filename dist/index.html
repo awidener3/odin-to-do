@@ -23,23 +23,63 @@
 
 	<body>
 		<aside>
-			<h1>Todo</h1>
+			<h1>✅ Todo</h1>
+
+			<hr />
+
 			<form id="projectForm">
+				<ul id="filterList">
+					<li>
+						<input type="radio" name="sortBy" id="all" value="all" />
+						<label for="all">All</label>
+					</li>
+					<li>
+						<input type="radio" name="sortBy" id="unfinished" value="unfinished" />
+						<label for="unfinished">Unfinished</label>
+					</li>
+					<li>
+						<input type="radio" name="sortBy" id="completed" value="completed" />
+						<label for="completed">Completed</label>
+					</li>
+					<li>
+						<input type="radio" name="sortBy" id="upcoming" value="upcoming" />
+						<label for="upcoming">Upcoming</label>
+					</li>
+					<li>
+						<input type="radio" name="sortBy" id="overdue" value="overdue" />
+						<label for="overdue">Overdue</label>
+					</li>
+				</ul>
+
+				<hr />
+
+				<h2>Projects</h2>
 				<ul id="projectList"></ul>
 			</form>
-			<button type="button" id="addProject">+ Add Project</button>
+			<button type="button" id="addProject"><i class="fa-solid fa-plus"></i> Project</button>
 		</aside>
 
 		<main>
 			<header>
-				<h2 id="projectName" contenteditable="true"></h2>
-				<button type="button" id="addTodo">+ Add Todo</button>
+				<h3 id="projectName" contenteditable="true"></h3>
+
+				<menu>
+					<li>
+						<button type="button" id="addTodo"><i class="fa-solid fa-plus"></i> Todo</button>
+					</li>
+					<li>
+						<button type="button" id="deleteProject"><i class="fa-solid fa-trash"></i></button>
+					</li>
+				</menu>
 			</header>
 			<ul id="todoList"></ul>
 		</main>
 
 		<footer>
-			<p>Built by Alex Widener | <a href="https://github.com/awidener3">Visit my Github Page</a></p>
+			<p>
+				Built by Alex Widener, 2024 |
+				<a href="https://github.com/awidener3" target="_blank" rel="noopener noreferrer">Visit my Github Page</a>
+			</p>
 		</footer>
 	</body>
 </html>
