@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+:root {
+	--border-radius: 6px;
+	--border: 1px solid black;
+	--dashed-border: 1px dashed black;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	font-family: 'JetBrains Mono', monospace;
+	font-style: italic;
+}
+
+input,
+button {
+	font-family: 'JetBrains Mono', monospace;
+	font-style: italic;
+	padding: 4px;
+	border-radius: var(--border-radius);
+	border: var(--border);
+	background: white;
+}
+
+button {
+	cursor: pointer;
+}
+
+h1 {
+	text-align: center;
+}
+
+aside > ul {
+	list-style-type: none;
+}
+
+.content {
+	display: flex;
+	gap: 20px;
+	padding: 10px;
+}
+
+#project {
+	width: 100%;
+}
+
+#project-title {
+	text-align: center;
+	font-weight: normal;
+}
+
+/* ul that holds todos */
+.todos {
+	list-style-type: '>';
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100%;
+}
+
+.todo {
+	padding: 10px;
+	border-bottom: var(--dashed-border);
+	flex: 1;
+}
+
+.todo-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.todo-header > menu {
+	display: flex;
+	gap: 10px;
+	list-style-type: none;
+}
