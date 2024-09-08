@@ -5,9 +5,10 @@
 }
 
 :root {
-	--not-started: rgb(189, 189, 189);
-	--in-progress: rgb(240, 228, 147);
-	--done: rgb(162, 241, 152);
+	--lightgray: rgb(241, 242, 244);
+	--darkgray: rgb(189, 189, 189);
+	--yellow: rgb(240, 228, 147);
+	--green: rgb(162, 241, 152);
 }
 
 body {
@@ -17,6 +18,23 @@ body {
 	grid-template-columns: max-content 1fr;
 	grid-template-rows: max-content 1fr max-content;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button,
+select {
+	cursor: pointer;
+	font-size: 0.8rem;
+	padding: 2px 5px;
+	border-radius: 10px;
+	border: none;
+}
+
+button {
+	background: white;
+}
+
+select {
+	background: var(--darkgray);
 }
 
 body > header {
@@ -40,11 +58,21 @@ body > header > button {
 }
 
 aside {
+	margin-left: 15px;
 	background: white;
+	border-radius: 15px;
 }
 
 main {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 	padding: 0 15px;
+}
+
+main > #addTodo {
+	padding: 10px 20px;
+	align-self: end;
 }
 
 /* #region todos */
@@ -67,7 +95,7 @@ main {
 .todo > .status-span {
 	display: block;
 	content: '';
-	background: var(--not-started);
+	background: var(--darkgray);
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
 	grid-row: 1 / -1;
@@ -84,14 +112,6 @@ main {
 	margin: 2px 5px;
 }
 
-.todo > header > select {
-	background: var(--not-started);
-	font-size: 0.8rem;
-	padding: 2px 5px;
-	border-radius: 10px;
-	border: none;
-}
-
 .todo > p {
 	margin: 5px;
 	font-size: 0.9rem;
@@ -100,7 +120,7 @@ main {
 
 .todo.in-progress > .status-span,
 .todo.in-progress > header > select {
-	background: var(--in-progress);
+	background: var(--yellow);
 }
 
 .todo.done > header > h3,
@@ -110,10 +130,19 @@ main {
 
 .todo.done > .status-span,
 .todo.done > header > select {
-	background: var(--done);
+	background: var(--green);
 }
 
 /* #endregion */
 
 footer {
+	display: flex;
+	justify-content: center;
+	grid-column: 1 / -1;
+	gap: 10px;
+	font-size: 0.8rem;
+}
+
+footer > p {
+	color: white;
 }

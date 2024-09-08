@@ -51,9 +51,6 @@ export default class Todo {
 
 		// format the data
 		data = data.trim();
-		// if (this.container.querySelector(`.${field}`).textContent) {
-		// 	this.container.querySelector(`.${field}`).textContent = data;
-		// }
 
 		// update the instance
 		this[field] = data;

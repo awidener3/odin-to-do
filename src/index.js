@@ -30,16 +30,33 @@ class UI {
 	constructor() {
 		this.aside = document.querySelector('aside');
 		this.todoListEl = document.querySelector('#todoList');
+		this.addTodoBtn = document.querySelector('#addTodo');
 		this.todos = JSON.parse(localStorage.getItem('todos'));
 	}
 
 	load = () => {
-		console.log(this.todos);
 		// add todos to content area
 		for (const todo of this.todos) {
 			const todoObj = new Todo(todo);
 			todoObj.build(this.todoListEl);
 		}
+
+		this.addTodoBtn.addEventListener('click', () => {
+			const defaultTodo = {
+				id: crypto.randomUUID(),
+				title: 'New todo',
+				desc: 'Add a description...',
+				status: 'not-started',
+			};
+
+			const todos = JSON.parse(localStorage.getItem('todos'));
+			todos.push(defaultTodo);
+			localStorage.setItem('todos', JSON.stringify(todos));
+
+			const newTodo = new Todo(defaultTodo);
+			newTodo.build(this.todoListEl);
+		});
+
 		// add projects to aside area
 	};
 }
