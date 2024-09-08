@@ -16,12 +16,19 @@ export default class Todo {
 			<span class="status-span"></span>
 			<header>
 				<h3 class="title" contenteditable>${this.title}</h3>
-				<label for="status" hidden>Status</label>
-					<select class="status">
-						<option value="not-started" ${this.status === 'not-started' ? 'selected' : ''}>Not started</option>
-						<option value="in-progress" ${this.status === 'in-progress' ? 'selected' : ''}>In progress</option>
-						<option value="done" ${this.status === 'done' ? 'selected' : ''}>Done</option>
-					</select>
+				<menu>
+					<li>
+						<label for="status" hidden>Status</label>
+						<select class="status">
+							<option value="not-started" ${this.status === 'not-started' ? 'selected' : ''}>Not started</option>
+							<option value="in-progress" ${this.status === 'in-progress' ? 'selected' : ''}>In progress</option>
+							<option value="done" ${this.status === 'done' ? 'selected' : ''}>Done</option>
+						</select>
+					</li>
+					<li>
+						<button type="button" class="delete"><i class="fa-solid fa-trash"></i></button>
+					</li>
+				</menu>
 			</header>
 			<p class="desc" contenteditable>${this.desc}</p>
 		</article>
@@ -33,6 +40,7 @@ export default class Todo {
 		const titleEl = container.querySelector('.title');
 		const descriptionEl = container.querySelector('.desc');
 		const statusEl = container.querySelector('.status');
+		const deleteBtn = container.querySelector('.delete');
 
 		titleEl.addEventListener('focusout', (e) => this.update('title', e.target.textContent));
 		descriptionEl.addEventListener('focusout', (e) => this.update('desc', e.target.textContent));
@@ -43,6 +51,8 @@ export default class Todo {
 
 			this.update('status', e.target.value);
 		});
+
+		deleteBtn.addEventListener('click', this.delete);
 	};
 
 	update = (field, data) => {
@@ -61,5 +71,12 @@ export default class Todo {
 			if (item.id === this.id) item[field] = data;
 		}
 		localStorage.setItem('todos', JSON.stringify(todos));
+	};
+
+	delete = () => {
+		const todos = JSON.parse(localStorage.getItem('todos'));
+		let updatedTodos = todos.filter((todo) => todo.id !== this.id);
+		localStorage.setItem('todos', JSON.stringify(updatedTodos));
+		this.container.remove();
 	};
 }

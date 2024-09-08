@@ -1,31 +1,31 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
 	entry: './src/index.js',
 	devtool: 'inline-source-map',
 	devServer: {
-		static: './dist'
+		static: './dist',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: "Odin's Errands",
+			title: 'Todo',
 			template: 'src/index.html',
-			favicon: 'src/assets/img/favicon.ico'
-		})
+			favicon: 'src/assets/img/favicon.ico',
+		}),
 	],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'main.js',
-		clean: true
+		clean: true,
 	},
 	module: {
 		rules: [
 			{
 				test: /\.css$/i,
-				use: ['style-loader', 'css-loader']
-			}
-		]
-	}
-}
+				use: ['style-loader', 'css-loader'],
+			},
+		],
+	},
+};

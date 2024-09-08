@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+			integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<title>Todo</title>
+	<link rel="icon" href="favicon.ico"><script defer src="main.js"></script></head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Odin's Errands</title>
-<link rel="icon" href="favicon.ico"><script defer src="main.js"></script></head>
+	<body>
+		<aside>
+			<h1>Todo</h1>
+			<form id="projectForm">
+				<ul id="projectList"></ul>
+			</form>
+			<button type="button" id="addProject">+ Add Project</button>
+		</aside>
 
-<body>
-  <header>
-    <h1>Odin's Errands</h1>
-  </header>
+		<main>
+			<header>
+				<h2 id="projectName" contenteditable="true"></h2>
+				<button type="button" id="addTodo">+ Add Todo</button>
+			</header>
+			<ul id="todoList"></ul>
+		</main>
 
-  <div id="content">
-    <div id="sidenav">
-      <h2>ToDos</h2>
-      <!-- 
-      <h2>Projects</h2>
-      <ul id="projectList" class="nav-menu">
-      </ul>
-      <button>+ Add Project</button> -->
-    </div>
-
-    <div id="screen">
-      <button id="newTodo">+ New</button>
-      <div id="todos">
-        <ul></ul>
-      </div>
-    </div>
-  </div>
-</body>
-
+		<footer>
+			<p>Built by Alex Widener | <a href="https://github.com/awidener3">Visit my Github Page</a></p>
+		</footer>
+	</body>
 </html>

@@ -11,26 +11,39 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+			integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 		<title>Todo</title>
 	</head>
 
 	<body>
-		<header>
-			<h1>Todo List</h1>
-			<button type="button">Toggle Theme</button>
-		</header>
-
 		<aside>
-			<button type="button" id="addProject">+ Add</button>
+			<h1>Todo</h1>
 			<form id="projectForm">
 				<ul id="projectList"></ul>
 			</form>
+			<button type="button" id="addProject">+ Add Project</button>
 		</aside>
 
 		<main>
-			<h2 id="projectName" contenteditable="true"></h2>
+			<header>
+				<h2 id="projectName" contenteditable="true"></h2>
+
+				<menu>
+					<li>
+						<button type="button" id="addTodo">+ Add Todo</button>
+					</li>
+					<li>
+						<button type="button" id="deleteProject">Delete Project</button>
+					</li>
+				</menu>
+			</header>
 			<ul id="todoList"></ul>
-			<button type="button" id="addTodo">Add New</button>
 		</main>
 
 		<footer>
