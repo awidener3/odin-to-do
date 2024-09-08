@@ -19,7 +19,7 @@ export default class Todo {
 		<article class="${this.priority} ${this.completed ? 'completed' : ''}">
 			<span class="priority-span"></span>
 			<header>
-				<h3 class="title" contenteditable>${this.title}</h3>
+				<h4 class="title" contenteditable>${this.title}</h4>
 				
 				<menu>
 					<li>
@@ -62,7 +62,7 @@ export default class Todo {
 
 		// update names
 		titleEl.addEventListener('focusout', (e) => this.update('title', e.target.textContent));
-		dueDateEl.addEventListener('focusout', (e) => this.update('dueDate', e.target.value));
+		dueDateEl.addEventListener('input', (e) => this.update('dueDate', e.target.value));
 		descriptionEl.addEventListener('focusout', (e) => this.update('desc', e.target.textContent));
 
 		// update priority

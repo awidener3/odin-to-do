@@ -17,5 +17,8 @@
 		"build": "webpack",
 		"dev": "webpack serve --open",
 		"d": "npm run dev"
+	},
+	"dependencies": {
+		"date-fns": "^3.6.0"
 	}
 }

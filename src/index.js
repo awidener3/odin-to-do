@@ -1,6 +1,7 @@
 import Project from './Project';
 import './style.css';
 import Todo from './Todo';
+import { formatDistance, isAfter, isBefore, subDays } from 'date-fns';
 
 const sampleTodos = [
 	{
@@ -61,6 +62,7 @@ class UI {
 		this.addProjectBtn = document.querySelector('#addProject');
 		this.deleteProjectBtn = document.querySelector('#deleteProject');
 		this.projectListEl = document.querySelector('#projectList');
+		this.filterListEl = document.querySelector('#filterList');
 		this.projectForm = document.querySelector('#projectForm');
 		this.projectName = document.querySelector('#projectName');
 
@@ -94,42 +96,116 @@ class UI {
 		// #region projects
 		this.setProjects();
 
+		// rename a project
 		this.projectName.addEventListener('focusout', this.renameProject);
 
-		this.addProjectBtn.addEventListener('click', () => {
-			const defaultProject = {
-				id: crypto.randomUUID(),
-				title: 'New Project',
-			};
-
-			const projects = JSON.parse(localStorage.getItem('projects'));
-			projects.push(defaultProject);
-			localStorage.setItem('projects', JSON.stringify(projects));
-
-			const newProject = new Project(defaultProject);
-			newProject.build(this.projectListEl);
-		});
+		// add a project
+		this.addProjectBtn.addEventListener('click', this.addProject);
 
 		// delete a project
 		this.deleteProjectBtn.addEventListener('click', this.deleteProject);
 
+		// select a project
 		this.projectForm.addEventListener('change', (e) => {
 			e.preventDefault();
 
-			const formData = new FormData(this.projectForm);
-			const newId = formData.get('selectedId');
-			const projects = JSON.parse(localStorage.getItem('projects'));
-			for (const project of projects) {
-				if (project.id === this.currentProjectId) project.selected = false;
-				if (project.id === newId) project.selected = true;
+			if (e.target.closest('ul').id === 'filterList') {
+				// deselect anything from projectList
+				const checkedItem = this.projectListEl.querySelector('input[type="radio"]:checked');
+				if (checkedItem) checkedItem.checked = false;
+			} else {
+				// deselect anything from filterList
+				const checkedItem = this.filterListEl.querySelector('input[type="radio"]:checked');
+				if (checkedItem) checkedItem.checked = false;
 			}
-			this.projects = projects;
-			localStorage.setItem('projects', JSON.stringify(projects));
 
-			this.currentProjectId = newId;
-			const projectName = this.projects.find((project) => project.id === this.currentProjectId).title;
-			this.projectName.textContent = projectName;
-			this.setTodos();
+			const formData = new FormData(this.projectForm);
+
+			// get todos by selected id
+			if (formData.get('selectedId')) {
+				// show project name
+				this.projectName.style.visibility = 'visible';
+
+				const newId = formData.get('selectedId');
+				const projects = JSON.parse(localStorage.getItem('projects'));
+				for (const project of projects) {
+					if (project.id === this.currentProjectId) project.selected = false;
+					if (project.id === newId) project.selected = true;
+				}
+				this.projects = projects;
+				localStorage.setItem('projects', JSON.stringify(projects));
+
+				this.currentProjectId = newId;
+				const projectName = this.projects.find((project) => project.id === this.currentProjectId).title;
+				this.projectName.textContent = projectName;
+				this.setTodos();
+			}
+
+			// get todos by sortBy
+			if (formData.get('sortBy')) {
+				// hide project name
+				this.projectName.style.visibility = 'hidden';
+
+				this.todoListEl.innerHTML = '';
+				this.todos = JSON.parse(localStorage.getItem('todos'));
+				const todaysDate = new Date();
+
+				switch (formData.get('sortBy')) {
+					case 'unfinished':
+						// add todos to content area
+						for (const todo of this.todos) {
+							if (!todo.completed) {
+								const todoObj = new Todo(todo);
+								todoObj.build(this.todoListEl);
+							}
+						}
+						break;
+
+					case 'completed':
+						// add todos to content area
+						for (const todo of this.todos) {
+							if (todo.completed) {
+								const todoObj = new Todo(todo);
+								todoObj.build(this.todoListEl);
+							}
+						}
+						break;
+
+					case 'upcoming':
+						// add todos to content area
+						for (const todo of this.todos) {
+							const todoDate = new Date(todo.dueDate);
+
+							if (isAfter(todoDate, todaysDate)) {
+								const todoObj = new Todo(todo);
+								todoObj.build(this.todoListEl);
+							}
+						}
+						break;
+
+					case 'overdue':
+						// add todos to content area
+						for (const todo of this.todos) {
+							const todoDate = new Date(todo.dueDate);
+
+							if (isBefore(todoDate, todaysDate) && !todo.completed) {
+								const todoObj = new Todo(todo);
+								todoObj.build(this.todoListEl);
+							}
+						}
+						break;
+
+					default:
+						// add todos to content area
+						for (const todo of this.todos) {
+							const todoObj = new Todo(todo);
+							todoObj.build(this.todoListEl);
+						}
+						break;
+				}
+			}
+
+			// get todos by selected filter
 		});
 		// #endregion
 	};
@@ -145,6 +221,20 @@ class UI {
 			const todoObj = new Todo(todo);
 			todoObj.build(this.todoListEl);
 		}
+	};
+
+	addProject = () => {
+		const defaultProject = {
+			id: crypto.randomUUID(),
+			title: 'New Project',
+		};
+
+		const projects = JSON.parse(localStorage.getItem('projects'));
+		projects.push(defaultProject);
+		localStorage.setItem('projects', JSON.stringify(projects));
+
+		const newProject = new Project(defaultProject);
+		newProject.build(this.projectListEl);
 	};
 
 	setProjects = () => {

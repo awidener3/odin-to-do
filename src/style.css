@@ -50,11 +50,24 @@ aside {
 	flex-direction: column;
 }
 
-aside > h1 {
-	margin-top: 10px;
+aside h1 {
+	margin: 10px 0;
 	text-align: center;
 }
 
+aside h2 {
+	font-size: 1rem;
+	color: var(--blue);
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+aside > #projectForm > #filterList > li,
+aside > #projectForm > #projectList > li {
+	font-size: 0.8rem;
+}
+
+aside > #projectForm > #filterList,
 aside > #projectForm > #projectList {
 	list-style-type: none;
 	display: flex;
@@ -63,28 +76,34 @@ aside > #projectForm > #projectList {
 	padding: 10px;
 }
 
+aside > #projectForm > #filterList > li > input[type='radio'],
 aside > #projectForm > #projectList > li > input[type='radio'] {
 	opacity: 0;
 	position: absolute;
 }
 
+aside > #projectForm > #filterList > li > label,
 aside > #projectForm > #projectList > li > label {
 	cursor: pointer;
 	width: 100%;
 	display: inline-block;
 	padding: 5px 10px;
 	border-radius: 10px;
+	transition: background 0.2s;
 }
 
+aside > #projectForm > #filterList > li > input[type='radio']:focus + label,
 aside > #projectForm > #projectList > li > input[type='radio']:focus + label {
 	outline: 1px dotted #212121;
 	outline: 5px auto -webkit-focus-ring-color;
 }
 
+aside > #projectForm > #filterList > li > label:hover,
 aside > #projectForm > #projectList > li > label:hover {
 	background: var(--darkgray);
 }
 
+aside > #projectForm > #filterList > li > input[type='radio']:checked + label,
 aside > #projectForm > #projectList > li > input[type='radio']:checked + label {
 	background: var(--blue);
 	color: white;
@@ -92,10 +111,11 @@ aside > #projectForm > #projectList > li > input[type='radio']:checked + label {
 }
 
 aside > #addProject {
+	align-self: start;
 	margin: 10px;
 	font-size: 1rem;
-	background: var(--darkgray);
-	color: var(--black);
+	background: none;
+	color: var(--blue);
 	font-weight: bold;
 }
 
@@ -111,8 +131,17 @@ main > header {
 	justify-content: space-between;
 }
 
-main > header > h2 {
+main > header > h3 {
 	color: var(--blue);
+}
+
+/* edit icon */
+main > header > h3::after {
+	margin-left: 10px;
+	color: var(--darkgray);
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	content: '\f044';
 }
 
 main > header > menu {
@@ -122,8 +151,10 @@ main > header > menu {
 }
 
 main > header > menu > li > button {
-	background: var(--blue);
-	color: white;
+	background: none;
+	font-size: 1rem;
+	color: var(--blue);
+	font-weight: bold;
 }
 
 main > header > menu > li > #deleteProject {
@@ -131,7 +162,7 @@ main > header > menu > li > #deleteProject {
 	color: var(--black);
 }
 
-/* #region todos */
+/* todos */
 #todoList {
 	list-style-type: none;
 	display: flex;
@@ -197,6 +228,7 @@ main > header > menu > li > #deleteProject {
 	padding: 3px;
 }
 
+/* low priority */
 .todo > article.low > .priority-span,
 .todo > article.low > header > menu > li > select {
 	background: var(--lightblue);
@@ -206,6 +238,7 @@ main > header > menu > li > #deleteProject {
 	outline: 2px solid var(--lightblue);
 }
 
+/* medium priority */
 .todo > article.medium > .priority-span,
 .todo > article.medium > header > menu > li > select {
 	background: var(--yellow);
@@ -215,6 +248,7 @@ main > header > menu > li > #deleteProject {
 	outline: 2px solid var(--yellow);
 }
 
+/* high priority */
 .todo > article.high > .priority-span,
 .todo > article.high > header > menu > li > select {
 	background: var(--red);
@@ -224,12 +258,25 @@ main > header > menu > li > #deleteProject {
 	outline: 2px solid var(--red);
 }
 
-.todo > article.completed > header > h3,
+/* completed */
+.todo > article.completed {
+	outline: 2px solid var(--darkgray);
+}
+
+.todo > article.completed * {
+	color: var(--darkgray);
+}
+
+.todo > article.completed > .priority-span,
+.todo > article.completed > header > menu > li > select {
+	color: var(--lightgray);
+	background: var(--darkgray);
+}
+
+.todo > article.completed > header > h4,
 .todo > article.completed > p {
 	text-decoration: line-through;
 }
-
-/* #endregion */
 
 footer {
 	display: flex;
@@ -237,8 +284,4 @@ footer {
 	padding: 10px;
 	gap: 10px;
 	font-size: 0.8rem;
-}
-
-footer > p {
-	color: white;
 }
