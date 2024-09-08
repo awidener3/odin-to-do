@@ -4,6 +4,8 @@ This is a simple Todo list project that allows users to create Todos, set their 
 
 This project utilizes [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming) to build the UI outside of basic foundational elements, and to also handle the business logic associated with Todos and Projects.
 
+[Live preview](https://awidener3.github.io/to-do/)
+
 ![A screenshot of the Todo project](./images/screenshot.png)
 
 ## Requirements
