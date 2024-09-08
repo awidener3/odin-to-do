@@ -2,21 +2,23 @@
 	"name": "odin-todo",
 	"version": "0.1.0",
 	"description": "To-do list project from The Odin Project.",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "webpack",
-		"watch": "webpack --watch",
-		"start": "webpack serve --open"
-	},
 	"author": "Alex Widener",
 	"license": "ISC",
+	"private": "true",
 	"devDependencies": {
-		"css-loader": "^7.1.1",
-		"html-webpack-plugin": "^5.6.0",
-		"style-loader": "^4.0.0",
-		"webpack": "^5.91.0",
-		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^5.0.4"
+		"css-loader": "7.1.2",
+		"html-webpack-plugin": "5.6.0",
+		"style-loader": "4.0.0",
+		"webpack": "5.94.0",
+		"webpack-cli": "5.1.4",
+		"webpack-dev-server": "5.1.0"
+	},
+	"scripts": {
+		"build": "webpack",
+		"dev": "webpack serve --open",
+		"d": "npm run dev"
+	},
+	"dependencies": {
+		"date-fns": "3.6.0"
 	}
 }

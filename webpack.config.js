@@ -10,8 +10,9 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, 'src/index.html'),
-			inject: false,
+			title: 'Todo',
+			template: 'src/index.html',
+			favicon: 'src/favicon.ico',
 		}),
 	],
 	output: {

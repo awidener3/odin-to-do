@@ -1,0 +1,287 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--lightgray: rgb(241, 242, 244);
+	--darkgray: rgb(189, 189, 189);
+	--yellow: rgb(240, 228, 147);
+	--green: rgb(162, 241, 152);
+	--red: rgb(230, 141, 152);
+	--lightblue: rgb(157, 224, 241);
+	--blue: rgb(56, 128, 150);
+	--black: rgb(49, 49, 49);
+}
+
+body {
+	background: var(--lightgray);
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: 1fr max-content;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: var(--black);
+}
+
+button,
+select {
+	cursor: pointer;
+	font-size: 0.8rem;
+	padding: 2px 5px;
+	border-radius: 10px;
+	border: none;
+}
+
+button {
+	background: var(--darkgray);
+}
+
+select {
+	background: var(--darkgray);
+}
+
+aside {
+	grid-column: 1 / 2;
+	grid-row: 1 / -1;
+	background: white;
+	display: flex;
+	flex-direction: column;
+}
+
+aside h1 {
+	margin: 10px 0;
+	text-align: center;
+}
+
+aside h2 {
+	font-size: 1rem;
+	color: var(--blue);
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+aside > #projectForm > #filterList > li,
+aside > #projectForm > #projectList > li {
+	font-size: 0.8rem;
+}
+
+aside > #projectForm > #filterList,
+aside > #projectForm > #projectList {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 10px;
+}
+
+aside > #projectForm > #filterList > li > input[type='radio'],
+aside > #projectForm > #projectList > li > input[type='radio'] {
+	opacity: 0;
+	position: absolute;
+}
+
+aside > #projectForm > #filterList > li > label,
+aside > #projectForm > #projectList > li > label {
+	cursor: pointer;
+	width: 100%;
+	display: inline-block;
+	padding: 5px 10px;
+	border-radius: 10px;
+	transition: background 0.2s;
+}
+
+aside > #projectForm > #filterList > li > input[type='radio']:focus + label,
+aside > #projectForm > #projectList > li > input[type='radio']:focus + label {
+	outline: 1px dotted #212121;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+aside > #projectForm > #filterList > li > label:hover,
+aside > #projectForm > #projectList > li > label:hover {
+	background: var(--darkgray);
+}
+
+aside > #projectForm > #filterList > li > input[type='radio']:checked + label,
+aside > #projectForm > #projectList > li > input[type='radio']:checked + label {
+	background: var(--blue);
+	color: white;
+	font-weight: bold;
+}
+
+aside > #addProject {
+	align-self: start;
+	margin: 10px;
+	font-size: 1rem;
+	background: none;
+	color: var(--blue);
+	font-weight: bold;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 15px;
+}
+
+main > header {
+	display: flex;
+	justify-content: space-between;
+}
+
+main > header > h3 {
+	color: var(--blue);
+}
+
+/* edit icon */
+main > header > h3::after {
+	margin-left: 10px;
+	color: var(--darkgray);
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	content: '\f044';
+}
+
+main > header > menu {
+	display: flex;
+	gap: 10px;
+	list-style-type: none;
+}
+
+main > header > menu > li > button {
+	background: none;
+	font-size: 1rem;
+	color: var(--blue);
+	font-weight: bold;
+}
+
+main > header > menu > li > #deleteProject {
+	background: none;
+	color: var(--black);
+}
+
+/* todos */
+#todoList {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.todo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.todo > input[type='checkbox'] {
+	width: 20px;
+	height: 20px;
+}
+
+.todo > article {
+	flex: 1;
+	display: grid;
+	grid-template-columns: 15px 1fr;
+	grid-template-rows: max-content 1fr;
+	outline: 2px solid var(--darkgray);
+	background: white;
+	color: var(--black);
+	border-radius: 15px;
+}
+
+.todo > article > .priority-span {
+	display: block;
+	content: '';
+	background: var(--darkgray);
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	grid-row: 1 / -1;
+	width: 100%;
+	height: 100%;
+}
+
+.todo > article > header {
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.9rem;
+	margin: 2px 5px;
+}
+
+.todo > article > header > menu {
+	list-style-type: none;
+	display: flex;
+	gap: 5px;
+}
+
+.todo > article > header > menu > li > button {
+	background: none;
+}
+
+.todo > article > p {
+	margin: 5px;
+	font-size: 0.9rem;
+	padding: 3px;
+}
+
+/* low priority */
+.todo > article.low > .priority-span,
+.todo > article.low > header > menu > li > select {
+	background: var(--lightblue);
+}
+
+.todo > article.low {
+	outline: 2px solid var(--lightblue);
+}
+
+/* medium priority */
+.todo > article.medium > .priority-span,
+.todo > article.medium > header > menu > li > select {
+	background: var(--yellow);
+}
+
+.todo > article.medium {
+	outline: 2px solid var(--yellow);
+}
+
+/* high priority */
+.todo > article.high > .priority-span,
+.todo > article.high > header > menu > li > select {
+	background: var(--red);
+}
+
+.todo > article.high {
+	outline: 2px solid var(--red);
+}
+
+/* completed */
+.todo > article.completed {
+	outline: 2px solid var(--darkgray);
+}
+
+.todo > article.completed * {
+	color: var(--darkgray);
+}
+
+.todo > article.completed > .priority-span,
+.todo > article.completed > header > menu > li > select {
+	color: var(--lightgray);
+	background: var(--darkgray);
+}
+
+.todo > article.completed > header > h4,
+.todo > article.completed > p {
+	text-decoration: line-through;
+}
+
+footer {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	gap: 10px;
+	font-size: 0.8rem;
+}
